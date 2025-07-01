@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_IdRole',
     ];
 
     /**
@@ -44,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function userRole()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function userGajiLog()
+    {
+        return $this->hasMany(GajiLog::class);
     }
 }
