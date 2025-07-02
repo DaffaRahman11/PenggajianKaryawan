@@ -122,37 +122,18 @@
                         <thead>
                           <tr>
                             <th>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input checkbox-primary"
-                                  type="checkbox"
-                                />
-                              </div>
+                              <span class="f-light f-w-600">Nama Karyawan</span>
                             </th>
                             <th>
-                              <span class="f-light f-w-600">Product Name</span>
+                              <span class="f-light f-w-600">Divisi </span>
                             </th>
-                            <th><span class="f-light f-w-600">SKU </span></th>
                             <th>
-                              <span class="f-light f-w-600">Category</span>
+                              <span class="f-light f-w-600">NPWP</span>
                             </th>
-                            <th><span class="f-light f-w-600">Price</span></th>
-                            <th><span class="f-light f-w-600">Qty</span></th>
-                            <th><span class="f-light f-w-600">Status</span></th>
-                            <th><span class="f-light f-w-600">Rating</span></th>
-                            <th><span class="f-light f-w-600">Action</span></th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr class="product-removes">
-                            <td>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input checkbox-primary"
-                                  type="checkbox"
-                                />
-                              </div>
-                            </td>
                             <td>
                               <div class="product-names">
                                 <div class="light-product-box">
@@ -171,51 +152,8 @@
                             <td>
                               <p class="f-light">Laptops</p>
                             </td>
-                            <td>
-                              <p class="f-light">56000.00</p>
-                            </td>
-                            <td>
-                              <p class="f-light">13</p>
-                            </td>
-                            <td>
-                              <span class="badge badge-light-secondary"
-                                >Sold Out</span
-                              >
-                            </td>
-                            <td>
-                              <div class="rating">
-                                <i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star f-light"></i>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="product-action">
-                                <a href="add-products.html">
-                                  <svg>
-                                    <use
-                                      href="{{asset('')}}assets/svg/icon-sprite.svg#edit-content"
-                                    ></use></svg
-                                ></a>
-                                <svg>
-                                  <use
-                                    href="{{asset('')}}assets/svg/icon-sprite.svg#trash1"
-                                  ></use>
-                                </svg>
-                              </div>
-                            </td>
                           </tr>
                           <tr class="product-removes">
-                            <td>
-                              <div class="form-check">
-                                <input
-                                  class="form-check-input checkbox-primary"
-                                  type="checkbox"
-                                />
-                              </div>
-                            </td>
                             <td>
                               <div class="product-names">
                                 <div class="light-product-box">
@@ -233,41 +171,6 @@
                             </td>
                             <td>
                               <p class="f-light">Smart Phones</p>
-                            </td>
-                            <td>
-                              <p class="f-light">19000.00</p>
-                            </td>
-                            <td>
-                              <p class="f-light">48</p>
-                            </td>
-                            <td>
-                              <span class="badge badge-light-primary"
-                                >In Stock</span
-                              >
-                            </td>
-                            <td>
-                              <div class="rating">
-                                <i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star txt-warning"></i
-                                ><i class="fa fa-star f-light"></i
-                                ><i class="fa fa-star f-light"></i>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="product-action">
-                                <a href="add-products.html">
-                                  <svg>
-                                    <use
-                                      href="{{asset('')}}assets/svg/icon-sprite.svg#edit-content"
-                                    ></use></svg
-                                ></a>
-                                <svg>
-                                  <use
-                                    href="{{asset('')}}assets/svg/icon-sprite.svg#trash1"
-                                  ></use>
-                                </svg>
-                              </div>
                             </td>
                           </tr>
                         </tbody>
