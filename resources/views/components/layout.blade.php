@@ -173,7 +173,7 @@
                 <i class="iconly-Category icli"> </i
               ></a>
               <div class="d-flex align-items-center gap-2">
-                <h4 class="f-w-600">Welcome Alex</h4>
+                <h4 class="f-w-600">Welcome {{ Auth::user()->name }}</h4>
                 <img
                   class="mt-0"
                   src="{{asset('assets/images/hand.gif')}}"
@@ -719,11 +719,12 @@
                     >
                   </li>
                   <li>
-                    <a
-                      class="btn btn-pill btn-outline-primary btn-sm"
-                      href="login.html"
-                      >Log Out</a
-                    >
+                    <form action="{{ url('/logout') }}" method="POST">
+                      @csrf
+                      <button type="submit" class="btn btn-pill btn-outline-primary btn-sm">
+                        Log Out
+                      </button>
+                    </form>
                   </li>
                 </ul>
               </li>

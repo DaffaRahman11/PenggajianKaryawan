@@ -98,7 +98,7 @@
                 /></a>
               </div>
               <div class="login-main">
-                <form class="theme-form" action="/login" method="POST">
+                <form class="theme-form" action="/" method="POST">
                   @csrf
                   <h4>Sign in to account</h4>
                   <p>Enter your email & password to login</p>
@@ -129,6 +129,7 @@
                         name="password"
                         id="password"
                         required=""
+                        placeholder="******"
                         required @error('password') is-invalid
                         @enderror
                       />
