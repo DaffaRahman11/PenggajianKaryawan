@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Data Pengajuan Gaji</h4>
+                  <h4>Data Gaji Disetujui</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                       ></a>
                     </li>
                     <li class="breadcrumb-item">Gaji Karyawan</li>
-                    <li class="breadcrumb-item active">Data Pengajuan Gaji</li>
+                    <li class="breadcrumb-item active">Data Gaji Disetujui</li>
                   </ol>
                 </div>
               </div>
@@ -167,7 +167,7 @@
                               </div>
                             </td>
                             <td>
-                              <span class="badge badge-light-warning"
+                              <span class="badge badge-light-success"
                                 >{{ $gajiPending->gajiStatus->status }}
                               </span>
                             </td>

@@ -32,6 +32,7 @@ class AuthController extends Controller
                 }elseif($user->user_IdRole == 3){
                     return redirect()->intended('/dashboardFinance');
                 }
+                return redirect('/');
             }
             return redirect('/')->with('loginError', 'Email atau password salah.');
             

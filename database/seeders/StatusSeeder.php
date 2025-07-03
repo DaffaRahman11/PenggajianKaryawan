@@ -14,7 +14,7 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         Status::create([
-            'Status'=> 'Pending',
+            'Status'=> 'Menunggu Persetujuan',
         ]);
         Status::create([
             'Status'=> 'Approved',
@@ -24,6 +24,9 @@ class StatusSeeder extends Seeder
         ]);
         Status::create([
             'Status'=> 'Paid',
+        ]);
+        Status::create([
+            'Status'=> 'Batal Di Ajukan',
         ]);
     }
 }

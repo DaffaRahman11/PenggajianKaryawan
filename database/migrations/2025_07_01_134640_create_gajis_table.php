@@ -17,14 +17,15 @@ return new class extends Migration
                 table: 'karyawans', indexName: 'gaji_IdKaryawan');
             $table->integer('gajiPokok');
             $table->integer('bonus');
-            $table->integer('pph');
+            $table->string('pph');
+            $table->integer('nominalPPH');
             $table->integer('gajiBersih');
-            $table->string('bulan');
-            $table->string('tahun');
+            $table->string('periodeGaji');
             $table->foreignId('gaji_IdStatus')->constrained(
                 table: 'statuses', indexName: 'gaji_IdStatus');
-            $table->string('tanggalDibayar');
-            $table->string('buktiTransfer');
+            $table->string('tanggalDibayar')->nullable();
+            $table->string('buktiTransfer')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

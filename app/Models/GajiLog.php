@@ -10,6 +10,8 @@ class GajiLog extends Model
     /** @use HasFactory<\Database\Factories\GajiLogFactory> */
     use HasFactory;
 
+    protected $guarded =['id'];
+
     public function LogGaji()
     {
         return $this->belongsTo(Gaji::class);

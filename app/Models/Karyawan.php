@@ -14,7 +14,7 @@ class Karyawan extends Model
 
     public function karyawanDivisi()
     {
-        return $this->belongsTo(Divisi::class);
+        return $this->belongsTo(Divisi::class, 'karyawan_IdDivisi');
     }
 
     public function karyawanGaji()
