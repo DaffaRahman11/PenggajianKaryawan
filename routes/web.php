@@ -5,27 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProsesGajiController;
 use App\Http\Controllers\PengajuanGajiController;
-
-// Route::get('/', function () {
-//     return view('halamanLogin.Login');
-// });
+use App\Http\Controllers\ManagerProsesGajiController;
 
 Route::get('/karyawan', function () {
     return view('halamanDataKaryawan.dataKaryawan');
 });
 
-
-Route::get('/gajiBayar', function () {
-    return view('halamanGaji.halamanGajiFinance.gajiTerbayar');
-});
-
-Route::get('/tambahGaji', function () {
-    return view('halamanGaji.halamanGajiFinance.tambahPembayaranGaji');
-});
-
-
 // Route Auth
-
 Route::middleware(['guest'])->group(function(){
     Route::get('/', [AuthController::class, 'index'])->name('login');
     Route::post('/', [AuthController::class, 'authenticate']);
@@ -33,14 +19,22 @@ Route::middleware(['guest'])->group(function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/home', [AuthController::class, 'cekUser']);
     Route::get('/dashboardDirektur', [DashboardController::class, 'dashboardDirektur'])->middleware('HakAkses:1');
+    
     Route::get('/dashboardManager', [DashboardController::class, 'dashboardManager'])->middleware('HakAkses:2');
+    Route::get('/dashboardManager/PengajuanGaji', [ManagerProsesGajiController::class, 'indexPengajuanGaji'])->middleware('HakAkses:2');
+    Route::get('/dashboardManager/detailPengajuan/{id}', [ManagerProsesGajiController::class, 'detailPengajuanManager'])->middleware('HakAkses:2');
+    
     Route::get('/dashboardFinance', [DashboardController::class, 'dashboardFinance'])->middleware('HakAkses:3');
     Route::resource('/dashboardFinance/PengajuanGaji', PengajuanGajiController::class)->middleware('HakAkses:3');
     Route::get('/dashboardFinance/GajiDisetujui', [ProsesGajiController::class, 'indexGajiApproved'])->middleware('HakAkses:3');
-
+    Route::get('/dashboardFinance/tambahPembayaran/{id}', [ProsesGajiController::class, 'tambahPembayaran'])->middleware('HakAkses:3');
+    Route::post('/dashboardFinance/uploadBuktiPembayaran', [ProsesGajiController::class, 'uploadBuktiPembayaran'])->middleware('HakAkses:3');
+    Route::get('/dashboardFinance/gajiTerbayar', [ProsesGajiController::class, 'gajiTerbayar'])->middleware('HakAkses:3');
+    Route::get('/dashboardFinance/detailGajiTerbayar/{id}', [ProsesGajiController::class, 'detailGajiTerbayar'])->middleware('HakAkses:3');
+    Route::get('/dashboardFinance/gajiDitolak', [ProsesGajiController::class, 'gajiDitolak'])->middleware('HakAkses:3');
+    Route::get('/dashboardFinance/detailGajiDitolak/{id}', [ProsesGajiController::class, 'detailGajiDitolak'])->middleware('HakAkses:3');
 });
 
-Route::get('/home', function () {
-    return redirect('/dashboardDirektur');
-});
+

@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Data Gaji Disetujui</h4>
+                  <h4>Data Pengajuan Gaji</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                       ></a>
                     </li>
                     <li class="breadcrumb-item">Gaji Karyawan</li>
-                    <li class="breadcrumb-item active">Data Gaji Disetujui</li>
+                    <li class="breadcrumb-item active">Data Pengajuan Gaji</li>
                   </ol>
                 </div>
               </div>
@@ -45,15 +45,15 @@
                           ></a>
                         </div>
                       </div>
-                      @if (request('message'))
-                        <div class="alert alert-success" role="alert">
-                            {{ request('message') }}
-                        </div>
+                      @if (session()->has('succes'))
+                          <div class="alert alert-success" role="alert">
+                              {{ session('succes') }}
+                          </div>
                       @endif
-                      @if (request('errorMessage'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ request('errorMessage') }}
-                        </div>
+                      @if (session()->has('error'))
+                          <div class="alert alert-danger" role="alert">
+                              {{ session('error') }}
+                          </div>
                       @endif
                       <div class="collapse" id="collapseProduct">
                         <div class="card card-body list-product-body">
@@ -142,36 +142,36 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ( $approvedGajis as $approvedGaji )                            
+                          @foreach ( $gajiPendings as $gajiPending )                            
                           <tr class="product-removes">
                             <td>
                               <div class="product-names">
-                                <p>{{ $approvedGaji->gajiKaryawan->namaKaryawan ?? '-' }}</p>
+                                <p>{{ $gajiPending->gajiKaryawan->namaKaryawan ?? '-' }}</p>
                               </div>
                             </td>
-                            <td style="text-align: center; vertical-align: middle;">
-                              <p class="f-light">{{ $approvedGaji->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-'}}</p>
+                            <td>
+                              <p class="f-light">{{ $gajiPending->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-'}}</p>
                             </td>
                             <td>
-                              <p class="f-light">{{ $approvedGaji->gajiPokok ?? '-' }}</p>
+                              <p class="f-light">{{ $gajiPending->gajiPokok ?? '-' }}</p>
                             </td>
                             <td>
-                              <p class="f-light">{{ $approvedGaji->gajiBersih ?? '-' }}</p>
+                              <p class="f-light">{{ $gajiPending->gajiBersih ?? '-' }}</p>
                             </td>
                             <td>
                               <div class="rating">
-                                <p class="f-light">{{ $approvedGaji->pph ?? '-' }}</p>
+                                <p class="f-light">{{ $gajiPending->pph ?? '-' }}</p>
                               </div>
                             </td>
                             <td>
-                              <span class="badge badge-light-success"
-                                >{{ $approvedGaji->gajiStatus->status }}
+                              <span class="badge badge-light-warning"
+                                >{{ $gajiPending->gajiStatus->status }}
                               </span>
                             </td>
                             <td>
-                              <div class="product-action">
-                                <a class="badge badge-primary" href="/dashboardFinance/tambahPembayaran/{{ $approvedGaji->id }}">
-                                  Bayar
+                             <div class="product-action">
+                                <a class="badge badge-primary" href="/dashboardManager/detailPengajuan/{{ $gajiPending->id }}">
+                                  Detail Pengajuan
                                 </a>
                               </div>
                             </td>

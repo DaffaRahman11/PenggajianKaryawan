@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Detail Pengajuan Gaji {{ $gaji->gajiKaryawan->namaKaryawan }}</h4>
+                  <h4>Detail Pembayaran Gaji Milik {{ $gaji->gajiKaryawan->namaKaryawan }}</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                       ></a>
                     </li>
                     <li class="breadcrumb-item">Gaji</li>
-                    <li class="breadcrumb-item active">Detail Pengajuan Gaji</li>
+                    <li class="breadcrumb-item active">Detail Pembayaran Gaji</li>
                   </ol>
                 </div>
               </div>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-sm-6">
                           <div class="mb-3">
-                            <label>Status Pengajuan</label>
+                            <label>Status Pembayaran</label>
                             <input
                               class="form-control"
                               type="text"
@@ -149,31 +149,26 @@
                           </div>
                         </div>
                       </div>
-                      <form
-                        class="dropzone"
-                        id="singleFileUpload"
-                        action="/dashboardFinance/uploadBuktiPembayaran"
-                        method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="gaji_id" value="{{ $gaji->id }}">
-                          <div class="row">
-                            <div class="col">
-                              <div class="mb-3">
-                                <label>Upload Bukti Pembayaran Gaji</label>
-                                  <div class="dz-message needsclick">
-                                    <i class="icon-cloud-up"></i>
-                                    <h6 class="f-w-600">
-                                      Drop files here or click to upload.
-                                    </h6>
-                                    <span class="note needsclick"
-                                      >(Available For <strong>Image</strong> File Only )</span
-                                    >
-                                  </div>
-                              </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label>Bukti Transfer Gaji</label>
+                            <div class="border rounded p-2" style="width: 100%; max-width: 300px;">
+                              <img
+                                src="{{ asset('storage/' . $gaji->buktiTransfer) }}"
+                                alt="Bukti Transfer"
+                                class="img-fluid"
+                                style="object-fit: cover; width: 100%; height: 400px;"
+                              />
                             </div>
                           </div>
-                      </form>
+                        </div>
+                        <div class="col-sm-6 d-flex align-items-end justify-content-center mb-3 px-1">
+                          <a href="/dashboardFinance/gajiTerbayar" class="btn btn-danger" style="margin-left: 3px; margin-right: 3px;">
+                            Kembali
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -181,7 +176,4 @@
             </div>
           </div>
           <!-- Container-fluid Ends-->
-  
-
-
 </x-layout>

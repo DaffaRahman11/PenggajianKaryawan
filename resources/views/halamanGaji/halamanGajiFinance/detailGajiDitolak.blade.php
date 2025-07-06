@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Detail Pengajuan Gaji {{ $gaji->gajiKaryawan->namaKaryawan }}</h4>
+                  <h4>Detail Gaji Ditolak Milik {{ $gaji->LogGaji->gajiKaryawan->namaKaryawan }}</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                       ></a>
                     </li>
                     <li class="breadcrumb-item">Gaji</li>
-                    <li class="breadcrumb-item active">Detail Pengajuan Gaji</li>
+                    <li class="breadcrumb-item active">Detail Gaji Ditolak</li>
                   </ol>
                 </div>
               </div>
@@ -37,7 +37,7 @@
                               class="form-control"
                               type="text"
                               id="gaji_IdKaryawan" name="gaji_IdKaryawan"
-                              value="{{ $gaji->gajiKaryawan->namaKaryawan ?? '-' }}"
+                              value="{{ $gaji->LogGaji->gajiKaryawan->namaKaryawan ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -51,7 +51,7 @@
                               class="form-control"
                               type="text"
                               id="gaji_IdKaryawan" name="gaji_IdKaryawan"
-                              value="Divisi {{ $gaji->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-' }}"
+                              value="Divisi {{ $gaji->LogGaji->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -65,7 +65,7 @@
                               class="form-control"
                               type="text"
                               id="gajiPokok" name="gajiPokok"
-                              value="Rp. {{ $gaji->gajiPokok ?? '-' }}"
+                              value="Rp. {{ $gaji->LogGaji->gajiPokok ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -77,7 +77,7 @@
                               class="form-control"
                               type="text"
                               id="bonus" name="bonus"
-                              value="Rp. {{ $gaji->bonus ?? '-' }}"
+                              value="Rp. {{ $gaji->LogGaji->bonus ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -91,7 +91,7 @@
                               class="form-control"
                               type="text"
                               id="nominalPPH" name="nominalPPH"
-                              value="Rp. {{ $gaji->nominalPPH ?? '-' }}"
+                              value="Rp. {{ $gaji->LogGaji->nominalPPH ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -103,7 +103,7 @@
                               class="form-control"
                               type="text"
                               id="pph" name="pph"
-                              value="{{ $gaji->pph ?? '-' }} "
+                              value="{{ $gaji->LogGaji->pph ?? '-' }} "
                               disabled
                             />
                           </div>
@@ -117,7 +117,7 @@
                               class="form-control"
                               type="text"
                               id="periodeGaji" name="periodeGaji"
-                              value="{{ $gaji->periodeGaji ?? '-' }}"
+                              value="{{ $gaji->LogGaji->periodeGaji ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -129,7 +129,7 @@
                               class="form-control"
                               type="text"
                               id="gaji_IdStatus" name="gaji_IdStatus"
-                              value="{{ $gaji->gajiStatus->status ?? '-' }}"
+                              value="{{ $gaji->LogGajiStatus->status ?? '-' }}"
                               disabled
                             />
                           </div>
@@ -143,37 +143,34 @@
                               class="form-control"
                               type="text"
                               id="gajiBersih" name="gajiBersih"
-                              value="Rp. {{ $gaji->gajiBersih ?? '-' }}"
+                              value="Rp. {{ $gaji->LogGaji->gajiBersih ?? '-' }}"
                               disabled
                             />
                           </div>
                         </div>
                       </div>
-                      <form
-                        class="dropzone"
-                        id="singleFileUpload"
-                        action="/dashboardFinance/uploadBuktiPembayaran"
-                        method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="gaji_id" value="{{ $gaji->id }}">
-                          <div class="row">
-                            <div class="col">
-                              <div class="mb-3">
-                                <label>Upload Bukti Pembayaran Gaji</label>
-                                  <div class="dz-message needsclick">
-                                    <i class="icon-cloud-up"></i>
-                                    <h6 class="f-w-600">
-                                      Drop files here or click to upload.
-                                    </h6>
-                                    <span class="note needsclick"
-                                      >(Available For <strong>Image</strong> File Only )</span
-                                    >
-                                  </div>
-                              </div>
-                            </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>Catatan Penolakan</label>
+                            <textarea
+                                class="form-control"
+                                id="catatan"
+                                name="catatan"
+                                rows="3"
+                                disabled
+                              >{{ $gaji->catatan ?? '-' }}
+                            </textarea>
                           </div>
-                      </form>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-end">
+                            <a class="btn btn-danger" href="/dashboardFinance/gajiDitolak">Kembali</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -181,7 +178,4 @@
             </div>
           </div>
           <!-- Container-fluid Ends-->
-  
-
-
 </x-layout>

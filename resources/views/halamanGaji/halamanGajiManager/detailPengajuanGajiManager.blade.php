@@ -149,31 +149,27 @@
                           </div>
                         </div>
                       </div>
-                      <form
-                        class="dropzone"
-                        id="singleFileUpload"
-                        action="/dashboardFinance/uploadBuktiPembayaran"
-                        method="POST"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="gaji_id" value="{{ $gaji->id }}">
-                          <div class="row">
-                            <div class="col">
-                              <div class="mb-3">
-                                <label>Upload Bukti Pembayaran Gaji</label>
-                                  <div class="dz-message needsclick">
-                                    <i class="icon-cloud-up"></i>
-                                    <h6 class="f-w-600">
-                                      Drop files here or click to upload.
-                                    </h6>
-                                    <span class="note needsclick"
-                                      >(Available For <strong>Image</strong> File Only )</span
-                                    >
-                                  </div>
-                              </div>
-                            </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>Catatan Penolakan</label>
+                            <textarea
+                                class="form-control"
+                                id="catatan"
+                                name="catatan"
+                                rows="3"
+                              >Tuliskan Alasan Pengajuan Diterima atau Ditolak
+                            </textarea>
                           </div>
-                      </form>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="text-end">
+                            <a class="btn btn-danger" href="/dashboardFinance/PengajuanGaji">Kembali</a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -181,7 +177,4 @@
             </div>
           </div>
           <!-- Container-fluid Ends-->
-  
-
-
 </x-layout>

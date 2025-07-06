@@ -53,5 +53,24 @@ class AuthController extends Controller
         return redirect('/');
 
     }
+    
+    public function cekUser(Request $request)
+    {
+         try{
+                $user = Auth::user();
+                if($user->user_IdRole == 1){
+                    return redirect()->intended('/dashboardDirektur');
+                }elseif($user->user_IdRole == 2){
+                    return redirect()->intended('/dashboardManager');
+                }elseif($user->user_IdRole == 3){
+                    return redirect()->intended('/dashboardFinance');
+                }
+                return redirect('/');
+            
+        }catch (\Exception $e){
+            return abort(403, 'Anda Tidak Memiliki Akses Ke Halaman Ini.');
+        }
+
+    }
 
 }

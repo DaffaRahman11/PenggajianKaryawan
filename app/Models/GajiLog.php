@@ -14,7 +14,7 @@ class GajiLog extends Model
 
     public function LogGaji()
     {
-        return $this->belongsTo(Gaji::class);
+        return $this->belongsTo(Gaji::class,'logs_IdGaji');
     }
 
     public function LogGajiUser()
@@ -24,6 +24,6 @@ class GajiLog extends Model
 
     public function LogGajiStatus()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class, 'logs_IdUser');
     }
 }

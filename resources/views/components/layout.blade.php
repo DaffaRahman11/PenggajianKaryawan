@@ -87,6 +87,21 @@
       type="text/css"
       href="{{asset('assets/css/vendors/owlcarousel.css')}}"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ asset('assets/css/vendors/animate.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ asset('assets/css/vendors/date-picker.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ asset('assets/css/vendors/dropzone.css') }}"
+    />
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link
@@ -108,6 +123,12 @@
       type="text/css"
       href="{{asset('assets/css/responsive.css')}}"
     />
+    <!-- Dropzone CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" />
+
+    <!-- Dropzone JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
   </head>
   <body>
     <!-- loader starts-->
@@ -148,7 +169,7 @@
           </form>
           <div class="header-logo-wrapper col-auto p-0">
             <div class="logo-wrapper">
-              <a href="index.html"
+              <a href="/home"
                 ><img
                   class="img-fluid for-light"
                   src="{{asset('assets/images/logo/logo_dark.png')}}"
@@ -749,7 +770,7 @@
         <!-- Page Sidebar Start-->
         <div class="sidebar-wrapper" data-layout="stroke-svg">
           <div class="logo-wrapper">
-            <a href="index.html"
+            <a href="/home"
               ><img
                 class="img-fluid"
                 src="{{asset('assets/images/logo/logo.png')}}"
@@ -765,7 +786,7 @@
             </div>
           </div>
           <div class="logo-icon-wrapper">
-            <a href="index.html"
+            <a href="/home"
               ><img
                 class="img-fluid"
                 src="{{asset('assets/images/logo/logo-icon.png')}}"
@@ -779,7 +800,7 @@
             <div id="sidebar-menu">
               <ul class="sidebar-links" id="simple-bar">
                 <li class="back-btn">
-                  <a href="index.html"
+                  <a href="/home"
                     ><img
                       class="img-fluid"
                       src="{{asset('assets/images/logo/logo-icon.png')}}"
@@ -894,8 +915,66 @@
     <script src="{{asset('assets/js/owlcarousel/owl.carousel.js')}}"></script>
     <script src="{{asset('assets/js/ecommerce.js')}}"></script>
     <script src="{{asset('assets/js/tooltip-init.js')}}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.en.js') }}"></script>
+    <script src="{{ asset('assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
+    <script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/typeahead/handlebars.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead/typeahead.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead/typeahead.custom.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead-search/handlebars.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead-search/typeahead-custom.js') }}"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{asset('assets/js/script.js')}}"></script>
+    <script>
+      Dropzone.autoDiscover = false;
+
+      const myDropzone = new Dropzone("#singleFileUpload", {
+        url: "/dashboardFinance/uploadBuktiPembayaran", // sama dengan action form
+        paramName: "file", // nama field file
+        maxFiles: 1,
+        maxFilesize: 5, // dalam MB
+        acceptedFiles: "image/*", // hanya file gambar
+        autoProcessQueue: true, // langsung proses saat file dipilih atau didrag
+        addRemoveLinks: true,
+        headers: {
+          "X-CSRF-TOKEN": document.querySelector('input[name="_token"]').value
+        },
+        init: function () {
+          this.on("sending", function (file, xhr, formData) {
+            // Tambahkan data form selain file (seperti input hidden)
+            const gajiId = document.querySelector('input[name="gaji_id"]').value;
+            formData.append("gaji_id", gajiId);
+          });
+
+          this.on("uploadprogress", function (file, progress) {
+            // Animasikan progress bar
+            const progressBar = file.previewElement.querySelector(".dz-upload");
+            if (progressBar) {
+              progressBar.style.width = progress + "%";
+            }
+          });
+
+          this.on("success", function (file, response) {
+            if (response.redirect) {
+              window.location.href = response.redirect;
+            }
+          });
+
+
+          this.on("error", function (file, response) {
+             if (response.redirect) {
+              window.location.href = response.redirect;
+            }
+          });
+        }
+      });
+    </script>
+
+
+
+    
   </body>
 </html>

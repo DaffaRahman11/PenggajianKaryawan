@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Data Gaji Disetujui</h4>
+                  <h4>Data Pengajuan Gaji Yang Ditolak</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                       ></a>
                     </li>
                     <li class="breadcrumb-item">Gaji Karyawan</li>
-                    <li class="breadcrumb-item active">Data Gaji Disetujui</li>
+                    <li class="breadcrumb-item active">Data Gaji Ditolak</li>
                   </ol>
                 </div>
               </div>
@@ -142,36 +142,36 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ( $approvedGajis as $approvedGaji )                            
+                          @foreach ( $gajiDitolaks as $gajiDitolak )                            
                           <tr class="product-removes">
                             <td>
                               <div class="product-names">
-                                <p>{{ $approvedGaji->gajiKaryawan->namaKaryawan ?? '-' }}</p>
+                                <p>{{ $gajiDitolak->gajiKaryawan->namaKaryawan ?? '-' }}</p>
                               </div>
                             </td>
                             <td style="text-align: center; vertical-align: middle;">
-                              <p class="f-light">{{ $approvedGaji->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-'}}</p>
+                              <p class="f-light">{{ $gajiDitolak->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-'}}</p>
                             </td>
                             <td>
-                              <p class="f-light">{{ $approvedGaji->gajiPokok ?? '-' }}</p>
+                              <p class="f-light">{{ $gajiDitolak->gajiPokok ?? '-' }}</p>
                             </td>
                             <td>
-                              <p class="f-light">{{ $approvedGaji->gajiBersih ?? '-' }}</p>
+                              <p class="f-light">{{ $gajiDitolak->gajiBersih ?? '-' }}</p>
                             </td>
                             <td>
                               <div class="rating">
-                                <p class="f-light">{{ $approvedGaji->pph ?? '-' }}</p>
+                                <p class="f-light">{{ $gajiDitolak->pph ?? '-' }}</p>
                               </div>
                             </td>
                             <td>
-                              <span class="badge badge-light-success"
-                                >{{ $approvedGaji->gajiStatus->status }}
+                              <span class="badge badge-light-danger"
+                                >{{ $gajiDitolak->gajiStatus->status }}
                               </span>
                             </td>
                             <td>
                               <div class="product-action">
-                                <a class="badge badge-primary" href="/dashboardFinance/tambahPembayaran/{{ $approvedGaji->id }}">
-                                  Bayar
+                                <a class="badge badge-primary" href="/dashboardFinance/detailGajiDitolak/{{ $gajiDitolak->id }}">
+                                  Lihat Detail
                                 </a>
                               </div>
                             </td>
