@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function userRole()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'user_IdRole');
     }
 
     public function userGajiLog()

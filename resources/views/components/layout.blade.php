@@ -816,58 +816,154 @@
                     <h6 class="lan-1">General</h6>
                   </div>
                 </li>
-                <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#">
-                    <svg class="stroke-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
-                      ></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#fill-home')}}"
-                      ></use></svg
-                    ><span class="lan-3">Dashboard </span></a
-                  >
-                </li>
-                <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#">
-                    <svg class="stroke-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#stroke-widget')}}"
-                      ></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#fill-widget')}}"
-                      ></use></svg
-                    ><span class="lan-6">Widgets</span></a
-                  >
-                  <ul class="sidebar-submenu">
-                    <li><a href="general-widget.html">General</a></li>
-                    <li><a href="chart-widget.html">Chart</a></li>
-                  </ul>
-                </li>
-                <li class="sidebar-list">
-                  <a class="sidebar-link sidebar-title" href="#">
-                    <svg class="stroke-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#stroke-layout')}}"
-                      ></use>
-                    </svg>
-                    <svg class="fill-icon">
-                      <use
-                        href="{{asset('assets/svg/icon-sprite.svg#fill-layout')}}"
-                      ></use></svg
-                    ><span class="lan-7">Page layout</span></a
-                  >
-                  <ul class="sidebar-submenu">
-                    <li><a href="box-layout.html">Boxed</a></li>
-                    <li><a href="layout-rtl.html">RTL</a></li>
-                    <li><a href="layout-dark.html">Dark Layout</a></li>
-                    <li><a href="hide-on-scroll.html">Hide Nav Scroll</a></li>
-                  </ul>
-                </li>
+                {{-- Sidebar Akses Direktur (Role = 1) --}}
+                @if(Auth::user()->userRole->user_IdRole == 1)
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#fill-home')}}"
+                        ></use></svg
+                      ><span class="lan-3">Dashboard</span></a
+                    >
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-widget')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#fill-widget')}}"
+                        ></use></svg
+                      ><span >Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-layout')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-user"></use></svg
+                      ><span>Gaji Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="">Pengajuan Gaji</a></li>
+                      <li><a href="">Tambah Gaji</a></li>
+                      <li><a href="">Gaji Disetujui</a></li>
+                      <li><a href="">Gaji Terbayar</a></li>
+                      <li><a href="">Gaji Ditolak</a></li>
+                    </ul>
+                  </li>
+                @endif
+
+                {{-- Sidebar Akses Manager (Role = 2) --}}
+                @if(Auth::user()->userRole->user_IdRole == 1)
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#fill-home')}}"
+                        ></use></svg
+                      ><span class="lan-3">Dashboard</span></a
+                    >
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-widget')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#fill-widget')}}"
+                        ></use></svg
+                      ><span >Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-layout')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-user"></use></svg
+                      ><span>Gaji Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="">Pengajuan Gaji</a></li>
+                      <li><a href="">Gaji Disetujui</a></li>
+                      <li><a href="">Gaji Terbayar</a></li>
+                      <li><a href="">Gaji Ditolak</a></li>
+                    </ul>
+                  </li>
+                @endif                
+
+                {{-- Sidebar Akses Finance (Role = 3) --}}
+                @if(Auth::user()->userRole->user_IdRole == 1)
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-widget')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#fill-widget')}}"
+                        ></use></svg
+                      ><span >Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                    </ul>
+                  </li>
+                  <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="#">
+                      <svg class="stroke-icon">
+                        <use
+                          href="{{asset('assets/svg/icon-sprite.svg#stroke-layout')}}"
+                        ></use>
+                      </svg>
+                      <svg class="fill-icon">
+                        <use href="../assets/svg/icon-sprite.svg#fill-user"></use></svg
+                      ><span>Gaji Karyawan</span></a
+                    >
+                    <ul class="sidebar-submenu">
+                      <li><a href="">Pengajuan Gaji</a></li>
+                      <li><a href="">Tambah Gaji</a></li>
+                      <li><a href="">Gaji Disetujui</a></li>
+                      <li><a href="">Gaji Terbayar</a></li>
+                      <li><a href="">Gaji Ditolak</a></li>
+                    </ul>
+                  </li>
+                @endif
+                
+
               </ul>
               <div class="right-arrow" id="right-arrow">
                 <i data-feather="arrow-right"></i>

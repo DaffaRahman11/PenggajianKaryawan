@@ -26,11 +26,11 @@ class AuthController extends Controller
 
                 $user = Auth::user();
                 if($user->user_IdRole == 1){
-                    return redirect()->intended('/dashboardDirektur');
+                    return redirect('/dashboardDirektur');
                 }elseif($user->user_IdRole == 2){
-                    return redirect()->intended('/dashboardManager');
+                    return redirect('/dashboardManager');
                 }elseif($user->user_IdRole == 3){
-                    return redirect()->intended('/dashboardFinance');
+                    return redirect('/dashboardFinance');
                 }
                 return redirect('/');
             }
@@ -59,11 +59,11 @@ class AuthController extends Controller
          try{
                 $user = Auth::user();
                 if($user->user_IdRole == 1){
-                    return redirect()->intended('/dashboardDirektur');
+                    return redirect('/dashboardDirektur');
                 }elseif($user->user_IdRole == 2){
-                    return redirect()->intended('/dashboardManager');
+                    return redirect('/dashboardManager');
                 }elseif($user->user_IdRole == 3){
-                    return redirect()->intended('/dashboardFinance');
+                    return redirect('/dashboardFinance');
                 }
                 return redirect('/');
             
