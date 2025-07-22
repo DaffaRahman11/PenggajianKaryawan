@@ -816,10 +816,8 @@
                     <h6 class="lan-1">General</h6>
                   </div>
                 </li>
-                {{-- Sidebar Akses Direktur (Role = 1) --}}
-                @if(Auth::user()->userRole->user_IdRole == 1)
-                  <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title" href="#">
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title" href="/home">
                       <svg class="stroke-icon">
                         <use
                           href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
@@ -831,7 +829,9 @@
                         ></use></svg
                       ><span class="lan-3">Dashboard</span></a
                     >
-                  </li>
+                </li>
+                {{-- Sidebar Akses Direktur (Role = 1) --}}
+                @if(Auth::user()->user_IdRole == 1)
                   <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title" href="#">
                       <svg class="stroke-icon">
@@ -846,7 +846,7 @@
                       ><span >Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                      <li><a href="/dashboardDirektur/DataKaryawan">Data Karyawan</a></li>
                     </ul>
                   </li>
                   <li class="sidebar-list">
@@ -861,31 +861,13 @@
                       ><span>Gaji Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="">Pengajuan Gaji</a></li>
-                      <li><a href="">Tambah Gaji</a></li>
-                      <li><a href="">Gaji Disetujui</a></li>
-                      <li><a href="">Gaji Terbayar</a></li>
-                      <li><a href="">Gaji Ditolak</a></li>
+                      <li><a href="/dashboardDirektur/gajiTerbayar">Gaji Terbayar</a></li>
                     </ul>
                   </li>
                 @endif
 
                 {{-- Sidebar Akses Manager (Role = 2) --}}
-                @if(Auth::user()->userRole->user_IdRole == 1)
-                  <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title" href="#">
-                      <svg class="stroke-icon">
-                        <use
-                          href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
-                        ></use>
-                      </svg>
-                      <svg class="fill-icon">
-                        <use
-                          href="{{asset('assets/svg/icon-sprite.svg#fill-home')}}"
-                        ></use></svg
-                      ><span class="lan-3">Dashboard</span></a
-                    >
-                  </li>
+                @if(Auth::user()->user_IdRole == 2)
                   <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title" href="#">
                       <svg class="stroke-icon">
@@ -900,7 +882,7 @@
                       ><span >Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                      <li><a href="/dashboardManager/DataKaryawan">Data Karyawan</a></li>
                     </ul>
                   </li>
                   <li class="sidebar-list">
@@ -915,16 +897,16 @@
                       ><span>Gaji Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="">Pengajuan Gaji</a></li>
-                      <li><a href="">Gaji Disetujui</a></li>
-                      <li><a href="">Gaji Terbayar</a></li>
-                      <li><a href="">Gaji Ditolak</a></li>
+                      <li><a href="/dashboardManager/PengajuanGaji">Pengajuan Gaji</a></li>
+                      <li><a href="/dashboardManager/GajiDisetujui">Gaji Disetujui</a></li>
+                      <li><a href="/dashboardManager/gajiTerbayar">Gaji Terbayar</a></li>
+                      <li><a href="/dashboardManager/gajiDitolak">Gaji Ditolak</a></li>
                     </ul>
                   </li>
                 @endif                
 
                 {{-- Sidebar Akses Finance (Role = 3) --}}
-                @if(Auth::user()->userRole->user_IdRole == 1)
+                @if(Auth::user()->user_IdRole == 3)
                   <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title" href="#">
                       <svg class="stroke-icon">
@@ -939,7 +921,7 @@
                       ><span >Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="general-widget.html">Data Karyawan</a></li>
+                      <li><a href="/dashboardFinance/DataKaryawan">Data Karyawan</a></li>
                     </ul>
                   </li>
                   <li class="sidebar-list">
@@ -954,11 +936,11 @@
                       ><span>Gaji Karyawan</span></a
                     >
                     <ul class="sidebar-submenu">
-                      <li><a href="">Pengajuan Gaji</a></li>
-                      <li><a href="">Tambah Gaji</a></li>
-                      <li><a href="">Gaji Disetujui</a></li>
-                      <li><a href="">Gaji Terbayar</a></li>
-                      <li><a href="">Gaji Ditolak</a></li>
+                      <li><a href="/dashboardFinance/PengajuanGaji">Pengajuan Gaji</a></li>
+                      <li><a href="/dashboardFinance/PengajuanGaji/create">Tambah Gaji</a></li>
+                      <li><a href="/dashboardFinance/GajiDisetujui">Gaji Disetujui</a></li>
+                      <li><a href="/dashboardFinance/gajiTerbayar">Gaji Terbayar</a></li>
+                      <li><a href="/dashboardFinance/gajiDitolak">Gaji Ditolak</a></li>
                     </ul>
                   </li>
                 @endif

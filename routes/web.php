@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProsesGajiController;
+use App\Http\Controllers\GajiDirekturController;
 use App\Http\Controllers\PengajuanGajiController;
 use App\Http\Controllers\ManagerProsesGajiController;
 
@@ -21,6 +23,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/home', [AuthController::class, 'cekUser']);
     Route::get('/dashboardDirektur', [DashboardController::class, 'dashboardDirektur'])->middleware('HakAkses:1');
+    Route::get('/dashboardDirektur/DataKaryawan', [KaryawanController::class, 'index'])->middleware('HakAkses:1');
+    Route::get('/dashboardDirektur/gajiTerbayar', [GajiDirekturController::class, 'gajiTerbayar'])->middleware('HakAkses:1');
     
     // Akses Manager
     Route::get('/dashboardManager', [DashboardController::class, 'dashboardManager'])->middleware('HakAkses:2');
@@ -28,11 +32,11 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboardManager/detailPengajuan/{id}', [ManagerProsesGajiController::class, 'detailPengajuanManager'])->middleware('HakAkses:2');
     Route::post('/dashboardManager/prosesGajiManager', [ManagerProsesGajiController::class, 'prosesGajiManager'])->middleware('HakAkses:2');
     Route::get('/dashboardManager/GajiDisetujui', [ManagerProsesGajiController::class, 'indexGajiDisetujui'])->middleware('HakAkses:2');
+    Route::get('/dashboardManager/gajiTerbayar', [ManagerProsesGajiController::class, 'gajiTerbayar'])->middleware('HakAkses:2');
+    Route::get('/dashboardManager/gajiDitolak', [ManagerProsesGajiController::class, 'gajiDitolak'])->middleware('HakAkses:2');
    
     Route::get('/dashboardManager/GajiDisetujui/{id}', [ManagerProsesGajiController::class, 'detailGajiDisetujui'])->middleware('HakAkses:2');
-    Route::get('/dashboardManager/gajiTerbayar', [ManagerProsesGajiController::class, 'gajiTerbayar'])->middleware('HakAkses:3');
     Route::get('/dashboardManager/detailGajiTerbayar/{id}', [ManagerProsesGajiController::class, 'detailGajiTerbayar'])->middleware('HakAkses:3');
-    Route::get('/dashboardManager/gajiDitolak', [ManagerProsesGajiController::class, 'gajiDitolak'])->middleware('HakAkses:3');
     Route::get('/dashboardManager/detailGajiDitolak/{id}', [ManagerProsesGajiController::class, 'detailGajiDitolak'])->middleware('HakAkses:3');
     
     // Akses Finance
@@ -45,6 +49,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboardFinance/detailGajiTerbayar/{id}', [ProsesGajiController::class, 'detailGajiTerbayar'])->middleware('HakAkses:3');
     Route::get('/dashboardFinance/gajiDitolak', [ProsesGajiController::class, 'gajiDitolak'])->middleware('HakAkses:3');
     Route::get('/dashboardFinance/detailGajiDitolak/{id}', [ProsesGajiController::class, 'detailGajiDitolak'])->middleware('HakAkses:3');
+    Route::get('/dashboardFinance/DataKaryawan', [KaryawanController::class, 'index'])->middleware('HakAkses:3');
 });
 
 

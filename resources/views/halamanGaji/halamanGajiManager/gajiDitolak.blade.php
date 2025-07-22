@@ -3,7 +3,7 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Data Karyawan</h4>
+                  <h4>Data Pengajuan Gaji Yang Ditolak</h4>
                 </div>
                 <div class="col-6">
                   <ol class="breadcrumb">
@@ -11,12 +11,12 @@
                       <a href="index.html">
                         <svg class="stroke-icon">
                           <use
-                            href="{{asset('')}}assets/svg/icon-sprite.svg#stroke-home"
+                            href="{{asset('assets/svg/icon-sprite.svg#stroke-home')}}"
                           ></use></svg
                       ></a>
                     </li>
-                    <li class="breadcrumb-item">Karyawan</li>
-                    <li class="breadcrumb-item active">Data Karyawan</li>
+                    <li class="breadcrumb-item">Gaji Karyawan</li>
+                    <li class="breadcrumb-item active">Data Gaji Ditolak</li>
                   </ol>
                 </div>
               </div>
@@ -44,10 +44,17 @@
                             ><i class="icon-close filter-close hide"></i
                           ></a>
                         </div>
-                        <a class="btn btn-primary" href="add-products.html"
-                          ><i class="fa fa-plus"></i>Add Product</a
-                        >
                       </div>
+                      @if (request('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ request('message') }}
+                        </div>
+                      @endif
+                      @if (request('errorMessage'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ request('errorMessage') }}
+                        </div>
+                      @endif
                       <div class="collapse" id="collapseProduct">
                         <div class="card card-body list-product-body">
                           <div
@@ -124,27 +131,49 @@
                             <th>
                               <span class="f-light f-w-600">Nama Karyawan</span>
                             </th>
+                            <th><span class="f-light f-w-600">Divisi </span></th>
                             <th>
-                              <span class="f-light f-w-600">Divisi </span>
+                              <span class="f-light f-w-600">Gaji Pokok</span>
                             </th>
-                            <th>
-                              <span class="f-light f-w-600">NPWP</span>
-                            </th>
+                            <th><span class="f-light f-w-600">Gaji Bersih</span></th>
+                            <th><span class="f-light f-w-600">PPh</span></th>
+                            <th><span class="f-light f-w-600">Status</span></th>
+                            <th><span class="f-light f-w-600">Action</span></th>
                           </tr>
                         </thead>
                         <tbody>
-                          @foreach ( $dataKaryawans as $dataKaryawan )  
+                          @foreach ( $gajiDitolaks as $gajiDitolak )                            
                           <tr class="product-removes">
                             <td>
                               <div class="product-names">
-                                <p>{{ $dataKaryawan->namaKaryawan }}</p>
+                                <p>{{ $gajiDitolak->gajiKaryawan->namaKaryawan ?? '-' }}</p>
+                              </div>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                              <p class="f-light">{{ $gajiDitolak->gajiKaryawan->karyawanDivisi->namaDivisi ?? '-'}}</p>
+                            </td>
+                            <td>
+                              <p class="f-light">{{ $gajiDitolak->gajiPokok ?? '-' }}</p>
+                            </td>
+                            <td>
+                              <p class="f-light">{{ $gajiDitolak->gajiBersih ?? '-' }}</p>
+                            </td>
+                            <td>
+                              <div class="rating">
+                                <p class="f-light">{{ $gajiDitolak->pph ?? '-' }}</p>
                               </div>
                             </td>
                             <td>
-                              <p class="f-light">{{ $dataKaryawan->karyawanDivisi->namaDivisi }}</p>
+                              <span class="badge badge-light-danger"
+                                >{{ $gajiDitolak->gajiStatus->status }}
+                              </span>
                             </td>
                             <td>
-                              <p class="f-light">{{ $dataKaryawan->npwp }}</p>
+                              <div class="product-action">
+                                <a class="badge badge-primary" href="/dashboardFinance/detailGajiDitolak/{{ $gajiDitolak->id }}">
+                                  Lihat Detail
+                                </a>
+                              </div>
                             </td>
                           </tr>
                           @endforeach

@@ -33,6 +33,7 @@
                   <div class="card-body pt-0">
                     <div class="new-user">
                       <ul>
+                        @foreach ( $karyawanDashboardFinances as $karyawanDashboardFinance )
                         <li>
                           <div class="space-common d-flex user-name">
                             <img
@@ -46,10 +47,10 @@
                                   <a
                                     class="f-w-500 f-14"
                                     href="user-profile.html"
-                                    >Smith John</a
+                                    >{{ $karyawanDashboardFinance->namaKaryawan }}</a
                                   >
                                 </h6>
-                                <span class="f-light f-w-500 f-12">India</span>
+                                <span class="f-light f-w-500 f-12">Divisi {{ $karyawanDashboardFinance->karyawanDivisi->namaDivisi }}</span>
                               </div>
                               <div class="product-sub">
                                 <div class="dropdown">
@@ -81,56 +82,7 @@
                             </div>
                           </div>
                         </li>
-                        <li>
-                          <div class="space-common d-flex user-name">
-                            <img
-                              class="img-40 rounded-circle img-fluid me-2"
-                              src="{{ asset('/assets/images/user/28.png') }}"
-                              alt="user"
-                            />
-                            <div class="common-space w-100">
-                              <div>
-                                <h6>
-                                  <a
-                                    class="f-w-500 f-14"
-                                    href="user-profile.html"
-                                    >Robert Fox</a
-                                  >
-                                </h6>
-                                <span class="f-light f-w-500 f-12"
-                                  >Afghanistan</span
-                                >
-                              </div>
-                              <div class="product-sub">
-                                <div class="dropdown">
-                                  <div
-                                    id="dropdownMenuButtonicon32"
-                                    data-bs-toggle="dropdown"
-                                    aria-expanded="false"
-                                    role="menu"
-                                  >
-                                    <svg class="invoice-icon">
-                                      <use
-                                        href="{{ asset('/assets/svg/icon-sprite.svg#more-vertical') }}"
-                                      ></use>
-                                    </svg>
-                                  </div>
-                                  <div
-                                    class="dropdown-menu dropdown-menu-end"
-                                    aria-labelledby="dropdownMenuButtonicon32"
-                                  >
-                                    <span class="dropdown-item"
-                                      >Last Month </span
-                                    ><span class="dropdown-item">Last Week</span
-                                    ><span class="dropdown-item"
-                                      >Last Day
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
+                        @endforeach
                       </ul>
                     </div>
                   </div>
@@ -154,42 +106,24 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ( $pengajuanDashboardFinances as $pengajuanDashboardFinance )  
                           <tr>
                             <td>
                               <div class="product-name">
                                 <a class="f-14 f-w-500" href="product.html"
-                                  >Darrell Steward</a
+                                  >{{ $pengajuanDashboardFinance->gajiKaryawan->namaKaryawan }}</a
                                 >
                               </div>
                             </td>
-                            <td class="f-14 f-w-500">
-                              $456.23
-                            </td>
-                            <td class="f-14 f-w-500">
-                              Juni 2025
-                            </td>
-                            <td>
-                              <div class="txt-primary">
-                                <span class="f-w-500 f-13">Complete</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="product-name">
-                                <a class="f-14 f-w-500" href="product.html"
-                                  >Floyd Miles</a
-                                >
-                              </div>
-                            </td>
-                            <td class="f-14 f-w-500">$550.73</td>
+                            <td class="f-14 f-w-500">{{ $pengajuanDashboardFinance->gajiBersih }}</td>
                             <td class="f-14 f-w-500">Juni 2025</td>
                             <td>
-                              <div class="txt-secondary">
-                                <span class="f-w-500 f-13">Failed</span>
+                              <div class="txt-warning">
+                                <span class="f-w-500 f-13">{{ $pengajuanDashboardFinance->gajiStatus->status }}</span>
                               </div>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
@@ -214,42 +148,24 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ( $terbayarDashboardFinances as $terbayarDashboardFinance )  
                           <tr>
                             <td>
                               <div class="product-name">
                                 <a class="f-14 f-w-500" href="product.html"
-                                  >Darrell Steward</a
+                                  >{{ $terbayarDashboardFinance->gajiKaryawan->namaKaryawan }}</a
                                 >
                               </div>
                             </td>
-                            <td class="f-14 f-w-500">
-                              $456.23
-                            </td>
-                            <td class="f-14 f-w-500">
-                              Juni 2025
-                            </td>
-                            <td>
-                              <div class="txt-primary">
-                                <span class="f-w-500 f-13">Complete</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="product-name">
-                                <a class="f-14 f-w-500" href="product.html"
-                                  >Floyd Miles</a
-                                >
-                              </div>
-                            </td>
-                            <td class="f-14 f-w-500">$550.73</td>
+                            <td class="f-14 f-w-500">{{ $terbayarDashboardFinance->gajiBersih }}</td>
                             <td class="f-14 f-w-500">Juni 2025</td>
                             <td>
                               <div class="txt-secondary">
-                                <span class="f-w-500 f-13">Failed</span>
+                                <span class="f-w-500 f-13">{{ $terbayarDashboardFinance->gajiStatus->status }}</span>
                               </div>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>
@@ -274,42 +190,24 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ( $ditolakDashboardFinances as $ditolakDashboardFinance )  
                           <tr>
                             <td>
                               <div class="product-name">
                                 <a class="f-14 f-w-500" href="product.html"
-                                  >Darrell Steward</a
+                                  >{{ $ditolakDashboardFinance->gajiKaryawan->namaKaryawan }}</a
                                 >
                               </div>
                             </td>
-                            <td class="f-14 f-w-500">
-                              $456.23
-                            </td>
-                            <td class="f-14 f-w-500">
-                              Juni 2025
-                            </td>
-                            <td>
-                              <div class="txt-primary">
-                                <span class="f-w-500 f-13">Complete</span>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <div class="product-name">
-                                <a class="f-14 f-w-500" href="product.html"
-                                  >Floyd Miles</a
-                                >
-                              </div>
-                            </td>
-                            <td class="f-14 f-w-500">$550.73</td>
+                            <td class="f-14 f-w-500">{{ $ditolakDashboardFinance->gajiBersih }}</td>
                             <td class="f-14 f-w-500">Juni 2025</td>
                             <td>
                               <div class="txt-secondary">
-                                <span class="f-w-500 f-13">Failed</span>
+                                <span class="f-w-500 f-13">{{ $ditolakDashboardFinance->gajiStatus->status }}</span>
                               </div>
                             </td>
                           </tr>
+                          @endforeach
                         </tbody>
                       </table>
                     </div>

@@ -19,7 +19,7 @@ return new class extends Migration
                 table: 'statuses', indexName: 'logs_IdStatus');
             $table->foreignId('logs_IdUser')->constrained(
                 table: 'users', indexName: 'logs_IdUser');
-            $table->string('catatan');
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }

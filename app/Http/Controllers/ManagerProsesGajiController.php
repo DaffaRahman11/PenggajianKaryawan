@@ -36,10 +36,17 @@ class ManagerProsesGajiController extends Controller
     {
          try {
             DB::beginTransaction();
-            $request->validate([
-                'catatan' => 'required',
+            $rules = [
                 'gaji_id' => 'required|exists:gajis,id',
-                ]);
+            ];
+
+            if ($request->tombol_submit === 'tolak') {
+                $rules['catatan'] = 'required';
+            } else {
+                $rules['catatan'] = 'nullable';
+            }
+
+            $request->validate($rules);
 
             if ($request->tombol_submit === 'terima') {
 
@@ -77,10 +84,7 @@ class ManagerProsesGajiController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'error' => true,
-                'redirect' => '/dashboardFinance/GajiDisetujui?errorMessage=Gaji Gagal Di Bayar, Harap Melakukan Pembayaran Kembali',
-            ]);
+            return redirect('/dashboardManager/PengajuanGaji')->with('error', 'Penolakan Pengajuan Gaji Gagal Diproses, Dimohon Mengisi Alasan Penolakan');
         }
     }
 
@@ -99,7 +103,7 @@ class ManagerProsesGajiController extends Controller
             $gajiTerbayars = Gaji::with(['gajiKaryawan.karyawanDivisi', 'gajiStatus'])
                             ->where('gaji_IdStatus', 4)
                             ->get();
-            return view('halamanGaji.halamanGajiFinance.gajiTerbayar', compact('gajiTerbayars'));
+            return view('halamanGaji.halamanGajiManager.gajiTerbayar', compact('gajiTerbayars'));
         } catch (\Exception $e) {
             abort(404); 
         }
@@ -124,7 +128,7 @@ class ManagerProsesGajiController extends Controller
             $gajiDitolaks = Gaji::with(['gajiKaryawan.karyawanDivisi', 'gajiStatus'])
                             ->where('gaji_IdStatus', 3)
                             ->get();
-            return view('halamanGaji.halamanGajiFinance.gajiDitolak', compact('gajiDitolaks'));
+            return view('halamanGaji.halamanGajiManager.gajiDitolak', compact('gajiDitolaks'));
         } catch (\Exception $e) {
             abort(404); 
         }

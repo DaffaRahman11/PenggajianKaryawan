@@ -172,7 +172,7 @@
                             <button class="btn btn-success me-3" type="submit" name="tombol_submit" value="terima">
                               Terima
                             </button>
-                            <button class="btn btn-danger me-3" type="reset" name="tombol_submit" value="tolak">
+                            <button class="btn btn-danger me-3" type="submit" name="tombol_submit" value="tolak">
                               Tolak
                             </button>
                             <button class="btn btn-info me-3" type="reset">
